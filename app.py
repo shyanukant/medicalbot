@@ -1,15 +1,14 @@
 from flask import Flask, render_template, jsonify, request
 from langchain.chains import RetrievalQA
 from langchain.vectorstores import Pinecore # vector store form database
-import pinecore # vector database
+# import pinecore # vector database
+from pinecore import Pinecore
 from langchain.llms import CTransformers # load models
 from langchain.prompts import PromptTemplate
 from src.helper import download_huggingface_embeddings
-from src.prompt import *
+from src.prompt import prompt_template
 from dotenv import load_dotenv
 import os
-
-
 
 PINCORE_API_KEY  = os.environ.get('PINCORE_API_KEY')
 PINCORE_API_ENV = os.environ.get('PINCORE_API_ENV')
@@ -18,6 +17,7 @@ embeddings = download_huggingface_embeddings()
 
 # initail pincore 
 pinecore.init(api_key = PINCORE_API_KEY, environment=PINCORE_API_ENV)
+pinecore
 
 index_name = "text" # enter index name from pincore database
 
